@@ -1,58 +1,63 @@
 from bs4 import BeautifulSoup
 import requests
+import hashlib
 from datetime import datetime
+from daterangeparser import parse
 
 # Fetches tournament data from the rk9 website
 def fetch_tournament_data(response):
     soup = BeautifulSoup(response, "lxml")
 
-    rows = soup.find_all('tr')
+    rows = soup.find_all('tr') # Find all rows in the table
+    data = [(["tournament_id", "tournament_name", "location", "rk9_id", "start_date", "end_date", "logo_link"])]
+    tournament_id = 0
 
     for row in rows:
         columns = row.find_all('td')
         
         if len(columns) >= 5:
+            tournament_id+=1 # Basic id for the tournaments, couldn't think of a simpler way to go about this.
+
             # Extract Date, Tournament Name, and City from specified columns.
             date = columns[0].text.strip()
             tournament_name = columns[2].text.strip()
-            city = columns[3].text.strip()
+            location = columns[3].text.strip()
+            start_date, end_date = parse_date(date)
             
-            print(f"Date: {date}")
-            print(f"Tournament Name: {tournament_name}")
-            print(f"City: {city}")
-
-            # Extract the src attribute from the logo column
-            logo_img = columns[1].find('img')
+            logo_img = columns[1].find('img')# Extract the src attribute from the logo column
             if logo_img:
                 logo_link = "rk9.gg"+logo_img['src']
 
-            # Extract the href attribute for VGC from link column
-            vg_link = columns[4].find('a', string='VG')
-            if vg_link:
-                print(f"VG Link: {vg_link['href'].strip('/tournament/')}")
+            #Extract the href attribute for VGC from link column
+            link = columns[4].find('a', string='VG')
+            if link:
+                rk9_id = link['href'].strip('/tournament/')
+            
+            #Compile data and add into list
+            data.append([tournament_id, tournament_name, location, rk9_id,start_date, end_date, logo_link])
         else:
             print("Row does not have enough columns")
 
-#Converts a date range string into a tuple of two datetime objects
+    return data
+
+# Converts a date range string into a tuple of two datetime objects
 def parse_date(date_range):
-    month_day, year = [part.strip() for part in date_range.split(',')]
-    month, days = month_day.split(' ')
-    start_day, end_day = [day.strip() for day in days.split('-')]
+    # Website's dumb and uses en dashes at random.
+    date_range = date_range.replace('–', '-')
+    try:
+        start_date, end_date = parse(date_range) # Yay for robintw's parse function!
 
-    # Create date strings
-    start_date_str = f"{year}-{month}-{start_day}"
-    end_date_str = f"{year}-{month}-{end_day}"
+        return start_date.date(), end_date.date()
+    
+    except ValueError as e:
+        print(f"Invalid date range: {date_range}")
+        return None, None
 
-    # Convert to datetime objects and format the dates
-    start_date = datetime.strptime(start_date_str, "%Y-%B-%d").strftime("%Y-%m-%d")
-    end_date = datetime.strptime(end_date_str, "%Y-%B-%d").strftime("%Y-%m-%d")
-
-    return (start_date, end_date)
+def generate_tournament_id(tournament_name, location, start_date):
+    # Generate a unique ID for the tournament
+    return hashlib.md5(f"{tournament_name}{location}{start_date}".encode()).hexdigest()
 
 def fetch_html(url):
     response = requests.get(url)
     return response.text
-
-url = "https://rk9.gg/events/pokemon"
-print(parse_date("June 7-9, 2024"))
 

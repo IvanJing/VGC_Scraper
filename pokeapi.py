@@ -1,32 +1,19 @@
 import pokebase as pb
 
-#This is an import of the pokebase library, a python wrapper made by Alessandro Pezzè for the pokeapi database. Check out his github repo here at: https://github.com/PokeAPI/pokebase
-#Also visit the PokeAPI website at: https://pokeapi.co/
-#This file will be used to fetch all available pokemon stats, abilities, and forms from the pokeapi database, then store them in the local database for later use.
+# This is an import of the pokebase library, a python wrapper made by Alessandro Pezzè for the pokeapi database. Check out his github repo here at: https://github.com/PokeAPI/pokebase
+# Also visit the PokeAPI website at: https://pokeapi.co/
+# This file will be used to fetch all available pokemon stats, abilities, and forms from the pokeapi database, then store them in the local database for later use.
 
-#This function will fetch some pokemon data from the pokeapi database and store it in the local database.
-
+# This function will fetch some pokemon data from the pokeapi database and store it in the local database.
 def fetch_pokemon_data():
-    #Fetch all pokemon data from the pokeapi database
-    i = 1
-    while (pokemon := pb.pokemon(i)) is not None:
+    i = 100 #range from 100 to 200 (not done)
+    data = [(["pokemon_id", "name", "health","attack","defense","special_attack","special_defense","speed","abilities"])] # Start up those headers
+    while (pokemon := pb.pokemon(i)) is not None: # Basically just keep going until I have all of the pokemon. All of them.
         name = pokemon.name
         base_stats = {stat.stat.name: stat.base_stat for stat in pokemon.stats}
         abilities = [ability.ability.name for ability in pokemon.abilities]
-        print(f"Name: {name}")
-        print(f"Base Stats: {base_stats}")
+        data.append([i, name, base_stats['hp'], base_stats['attack'], base_stats['defense'], base_stats['special-attack'], base_stats['special-defense'], base_stats['speed'], abilities])
         i += 1
-        if(i > 10):
+        if(i == 200):
             break
-
-def fetch_one():
-    #Fetch a single pokemon's data from the pokeapi database
-    bulbasaur = pb.pokemon()
-    name = bulbasaur.name
-
-    base_stats = {stat.stat.name: stat.base_stat for stat in bulbasaur.stats}
-    abilities = [ability.ability.name for ability in bulbasaur.abilities]
-    print(f"Name: {name}")
-    print(f"Base Stats: {base_stats}")
-    
-fetch_pokemon_data()
+    return data
