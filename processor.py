@@ -6,9 +6,10 @@ import csv
 # This function creates a csv file with provided data.
 def create_csv(data, filepath):
     with open(filepath, mode="w", newline="", encoding="utf-8") as file:
-        file.truncate(0) 
+        file.truncate(0)
         writer = csv.writer(file)
         writer.writerows(data)
+
 
 def continue_csv(data, filepath):
     with open(filepath, mode="a", newline="", encoding="utf-8") as file:
