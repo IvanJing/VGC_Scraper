@@ -12,7 +12,6 @@ import hashlib
 from datetime import datetime
 from daterangeparser import parse
 
-
 def fetch_all_tournament_data(response):
     """Fetches tournament data from rk9 website.
 
@@ -63,7 +62,6 @@ def fetch_all_tournament_data(response):
 
 
     soup = BeautifulSoup(response, "lxml")
-
     rows = soup.find_all("tr")
     tournaments_data = [
         (
@@ -98,7 +96,7 @@ def fetch_all_tournament_data(response):
 
             link = columns[4].find("a", string="VG")
             if link:
-                rk9_id = link["href"].strip("/tournament/")
+                rk9_id = link["href"].replace("/tournament/", "")
             else:
                 rk9_id = None
 
@@ -172,14 +170,14 @@ def fetch_standings_data(tournament_data):
                     ):  # Certain tournaments don't have standing links or lack country data.
                         first_name = columns[1].text.strip()
                         last_name = columns[2].text.strip()
-                        country = columns[3].text.strip() if len(columns) >= 9 else None
+                        country = columns[3].text.strip() if len(columns) >= 8 else None
                         division = columns[3 if country is None else 4].text.strip()
                         trainer_name = columns[4 if country is None else 5].text.strip()
                         team_list_element = columns[5 if country is None else 6].find(
                             "a"
                         )
                         team_list = (
-                            team_list_element["href"]
+                            team_list_element["href"].replace("/teamlist/public/", "")
                             if team_list_element
                             else "Submitted"
                         )
@@ -224,7 +222,8 @@ def fetch_team_data(standings_data):
             soup = BeautifulSoup(response, "lxml")
 
             team = soup.find_all("div", {"class": "pokemon bg-light-green-50 p-3"})
-
+            if(player_id == "0f93a7e428dad9cf9fff09a2eb3c28c"):
+                print("here!")
             team_members = []
             for team_member in team[:6]:
                 poke_icon = team_member.find("img")["src"]

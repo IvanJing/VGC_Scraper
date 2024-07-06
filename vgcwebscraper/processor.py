@@ -2,7 +2,6 @@
 # My intention is to create CSV files, to avoid using tons of insert statements in the database.
 import csv
 
-
 # This function creates a csv file with provided data.
 def create_csv(data, filepath):
     with open(filepath, mode="w", newline="", encoding="utf-8") as file:

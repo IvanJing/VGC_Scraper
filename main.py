@@ -30,6 +30,13 @@ def make_pokemon_csv():
     # Create a CSV file with the pokemon data
     processor.continue_csv(data, "data/pokemon.csv")
 
+def test_team_fetch():
+    standings_path = "data/standings.csv"
+
+    team_data = scraper.test_fetch_team_data(standings_path)
+
+    processor.create_csv(team_data, "data/teams.csv")
+
 def main():
     make_all_tournaments_csv()
 
