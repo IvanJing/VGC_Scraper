@@ -1,6 +1,6 @@
-import processor
-import scraper
-import pokeapi
+import vgcwebscraper.processor as processor
+import vgcwebscraper.scraper as scraper
+import vgcwebscraper.pokeapi as pokeapi
 import timeit
 
 
@@ -38,7 +38,7 @@ def test_team_fetch():
     processor.create_csv(team_data, "data/teams.csv")
 
 def main():
-    make_all_tournaments_csv()
+    make_pokemon_csv()
 
 
 main()
