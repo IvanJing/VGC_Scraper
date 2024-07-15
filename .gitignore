@@ -4,3 +4,4 @@ data/pokemon.csv
 data/standings.csv
 data/teams.csv
 data/tournaments.csv
+.env

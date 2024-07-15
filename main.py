@@ -38,7 +38,7 @@ def test_team_fetch():
     processor.create_csv(team_data, "data/teams.csv")
 
 def main():
-    make_pokemon_csv()
+    processor.create_csv(scraper.fetch_team("data/standings.csv"), "data/teams.csv", type = "teams")
 
 
 main()

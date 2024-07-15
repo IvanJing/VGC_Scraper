@@ -5,12 +5,13 @@ Because of the way the site formats tournaments, we need to first fill the tourn
 to fill the standings dataset. Similarly, team view is hidden behind more links, so we need to scrape and crawl those as well. 
 
 """
-
+import concurrent.futures
 from bs4 import BeautifulSoup
 import requests
 import hashlib
 from datetime import datetime
 from daterangeparser import parse
+import pandas as pd
 
 def fetch_all_tournament_data(response):
     """Fetches tournament data from rk9 website.
@@ -205,31 +206,31 @@ def fetch_standings_data(tournament_data):
     return standings_data
 
 
-def fetch_team_data(standings_data):
-    """Fetches individual team data and stores them as JSONS in a list."""
+def fetch_team(filepath):
+    """Takes in the filepath for the standings csv and creates a new csv with team member data"""
 
-    teams_data = [
-        (["tournament_id", "player_id", "team_members", "division", "standing"])
-    ]
+    def fetch_team_members(url):
+        """Fetch the team members using the constructed url."""
 
-    for headers in standings_data:
-        tournament_id, player_id, _, _, _, division, _, team_list, standing = headers
+        response = fetch_html(url)
+        soup = BeautifulSoup(response, "lxml")
 
-        if team_list:
-            team_url = f"https://rk9.gg/teamlist/public/{team_list}"
+        team_members = []
 
-            response = fetch_html(team_url)
-            soup = BeautifulSoup(response, "lxml")
+        team = soup.find_all("div", {"class": "pokemon bg-light-green-50 p-3"})
 
-            team = soup.find_all("div", {"class": "pokemon bg-light-green-50 p-3"})
-            if(player_id == "0f93a7e428dad9cf9fff09a2eb3c28c"):
-                print("here!")
-            team_members = []
-            for team_member in team[:6]:
+        for team_member in team[:6]:
                 poke_icon = team_member.find("img")["src"]
 
-                name_tag = team_member.find("i", class_="small")
-                name = name_tag.text.strip() if name_tag else None
+                raw_text = team_member.get_text(separator=' ', strip=True)
+                name = ''
+                form = 'N/A'
+                
+                if '[' in raw_text and ']' in raw_text:
+                    name = raw_text.split('[')[0].strip()
+                    form = raw_text.split('[')[1].split(']')[0].strip()
+                else:
+                    name = raw_text.split(' ')[0]
 
                 tera_type_tag = team_member.find("b", text="Tera Type:").next_sibling
                 tera_type = tera_type_tag.strip().strip('"') if tera_type_tag else None
@@ -247,24 +248,54 @@ def fetch_team_data(standings_data):
                 moves = team_member.find_all("span", {"class": "badge"})
                 move1, move2, move3, move4 = moves
 
-                team_member_data = {
-                    "poke_icon": poke_icon,
-                    "name": name,
-                    "tera_type": tera_type,
-                    "ability": ability,
-                    "held_item": held_item,
-                    "move1": move1.text,
-                    "move2": move2.text,
-                    "move3": move3.text,
-                    "move4": move4.text,
-                }
+                team_member_data = [
+                    poke_icon,
+                    name,
+                    form,
+                    tera_type,
+                    ability,
+                    held_item,
+                    move1.text,
+                    move2.text,
+                    move3.text,
+                    move4.text,
+
+                ]
 
                 team_members.append(team_member_data)
+        return team_members
 
-            teams_data.append(
-                [tournament_id, player_id, team_members, division, standing]
-            )
-    return teams_data
+
+    df = pd.read_csv(filepath)
+    team_data = [
+        [
+            "tournament_id",
+            "player_id",
+            "icon",
+            "pokemon",
+            "form",
+            "tera_type",
+            "ability",
+            "held_item",
+            "move1",
+            "move2",
+            "move3",
+            "move4",
+        ]
+    ]
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_url = {executor.submit(fetch_team_members, f"https://rk9.gg/teamlist/public/{row['team_list']}"): row for index, row in df.iterrows()}
+        for future in concurrent.futures.as_completed(future_to_url):
+            row = future_to_url[future]
+            try:
+                members = future.result()
+                for member in members:
+                    team_data.append([row["tournament_id"], row["player_id"], *member])
+            except Exception as exc:
+                print(f"An error occurred: {exc}")
+
+    return team_data
 
 
 def fetch_html(url):

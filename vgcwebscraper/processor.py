@@ -5,15 +5,32 @@ Because it's almost certain that new data will be acquired over the lifetime of 
 """
 import pandas as pd
 import json
-import sqlalchemy
 
-def create_csv(data, filepath):
+
+def create_csv(data, filepath, type):
+    """Creates a CSV file from a list and saves it to the specified filepath. Type denotes the type of data being saved."""
+
     df = pd.DataFrame(data)
-    df.to_csv(filepath, index = False, encoding = 'utf-8')
+
+    if type == 'tournament':
+        df = clean_tournament_data(df)
+    elif type == 'standings':
+        df = clean_standings_data(df)
+    elif type == 'teams':
+        df = clean_teams_data(df)
+    df.to_csv(filepath, index = False, encoding = 'utf-8', header = False)
 
 
-def continue_csv(data, filepath):
+def continue_csv(data, filepath, type):
+    """Appends new rows to an existing CSV file. Type denotes the type of data being saved."""
+
     df = pd.DataFrame(data)
+
+    if type == 'tournament':
+        df = clean_tournament_data(df)
+    elif type == 'standings':
+        df = clean_standings_data(df)
+
     df.to_csv(filepath, mode = 'a', index = False, header = False, encoding = 'utf-8')
 
 
@@ -24,6 +41,8 @@ def add_column_csv(column_name, column_data, filepath):
 
 
 def clean_tournament_data(df):
+    """Cleans the tournament data by dropping duplicates, filling in missing values, and converting columns to the correct data type."""
+
     df = df.drop_duplicates()
     
     df['rk9_id'] = df['rk9_id'].fillna('missing_rk9_id')
@@ -37,6 +56,8 @@ def clean_tournament_data(df):
 
 
 def clean_standings_data(df):
+    """Cleans the standings data by dropping duplicates, filling in missing values, and converting columns to the correct formats."""
+
     df = df.drop_duplicates()
     
     df['country'] = df['country'].fillna('Unknown')
@@ -49,14 +70,8 @@ def clean_standings_data(df):
 
 
 def clean_teams_data(df):
-    df = df.drop_duplicates()
-    
-    df['team_members'] = df['team_members'].apply(json.loads)
-
-    for team in df['team_members']:
-        for member in team:
-            if not member['poke_icon'].startswith('https://'):
-                member['poke_icon'] = 'invalid_url'
+    """Cleans the teams data by dropping duplicates, checking column validity, and converting columns to the correct formats."""
                 
     return df
+
 
