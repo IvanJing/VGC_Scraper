@@ -1,0 +1,88 @@
+tournament_id,tournament_name,location,rk9_id,start_date,end_date,logo_link
+dab57d06a13fcd58d689843c0e54a021,2024 Pokémon World Championships,"Honolulu, US",,2024-08-16,2024-08-18,rk9.gg/static/images/worlds2024_logo_300x300.png
+ef37920b3b369e1a760695ee54214f7f,North America Pokémon International Championships 2024,"New Orleans, US",NA02mtILnc5ycfC7jXkD,2024-06-07,2024-06-09,rk9.gg/static/images/naic_101x110.png
+1c19d7a5574b18876a4317f05335c268,Bologna Pokémon Special Event 2024,"Bologna, IT",BOL02JtZY7MHanrpX1yg,2024-06-01,2024-06-02,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+0edd51cb574c3790707ce33155063f3f,Los Angeles Pokémon Regional Championships 2024,"Los Angeles, US",LA02m1nh2pWv0jkLpveI,2024-05-24,2024-05-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+dded1f3d6d1f41f4ea4fa5f9a5b85cf4,Santiago Pokémon Regional Championship 2024,"Huechuraba, CL",STG02w4A6uklqs9VCPzh,2024-05-18,2024-05-19,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+5e5d5ad43b45e8bcc2f4ac5f68c23b62,Stockholm Pokémon Regional Championships 2024,"Älvsjö, SE",STO02wl80bWeQOIO2bxP,2024-05-11,2024-05-12,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+8a64ba028b7cadb77e47f087733ae0db,Indianapolis Pokémon Regional Championships 2024,"Indianapolis, US",IND02mCwIuhUMs3NdM7W,2024-05-03,2024-05-05,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+36de75f9a8988a14fb720050e71ac6ae,São Paulo Pokémon Regional Championships 2024,"São Paulo - SP, BR",SAO02wq5kpeo4ES9gWjc,2024-04-20,2024-04-21,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+1e095db9540a46469b7fea3a66be9595,Orlando Pokémon Regional Championships 2024,"Orlando, US",ORL02mkY0cJRxgsXs1kS,2024-04-12,2024-04-14,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+6b9700920f6bf804a52e8253bc00e50e,Perth Pokémon Regional Championships 2024,"Perth, AU",PER02wgSg7uJW7d8FwUe,2024-04-13,2024-04-14,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+34f4097949177495acd413c6c2449c0f,Europe Pokémon International Championships 2024,"London, UK",EU02whGbj7Vqpe87mRZT,2024-04-05,2024-04-07,rk9.gg/static/images/euic_101x110.png
+58b6c6113d2b24b21a9a18e58c214e7a,Vancouver Pokémon Regional Championships 2024,"Vancouver, CA",VAN02mE7gEJ80KMx7HC4,2024-03-22,2024-03-24,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+cde66ee12c3af02270a7113552084406,Goiania Pokémon Regional Championships 2024,"Goiânia - GO, BR",GOI02o7IDmbKTLBtCoTt,2024-03-09,2024-03-10,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+1b638ae911b467e672e436a8b6c63969,Utrecht Pokémon Special Event 2024,"Utrecht, NL",UTR02qceDeeOiTdLMLLF,2024-03-02,2024-03-03,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+e60bb0b63bbc49f87246dc17cdb876a2,Dortmund Pokémon Regional Championships 2024,"Dortmund, DE",DOR2mKpKsaHNWWKhpJRk,2024-02-10,2024-02-11,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+b98be3c3da446ff1b57133bec35a7912,Knoxville Pokémon Regional Championships 2024,"Knoxville, US",KNO2mNAEkSbVm7oYfOvU,2024-02-02,2024-02-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+833d5354c35cbb63e7258aa2a8114808,Melbourne Pokémon Regional Championships 2024,"South Wharf, AU",MEL2mR43t5En6wmkmM2K,2024-02-03,2024-02-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+08ee2a22c43d84f432f4ee452d29754a,Liverpool Pokémon Regional Championships 2024,"Liverpool, UK",LIV02mkoFE9bn1wGAf0J,2024-01-27,2024-01-28,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+3d6ec7c1f666c61619206a85b47bd603,Charlotte Pokémon Regional Championships 2024,"Charlotte, US",CHA2pGWrNLxBnP8EuHex,2024-01-19,2024-01-21,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+08c393fd4413990f78bb52a060c7703f,Portland Pokémon Regional Championships 2024,"Portland, US",PO2b9WxRw223EMcjpOaW,2024-01-05,2024-01-07,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+67ea57ac9ffd621ee4806fd5d9682382,San Antonio Pokémon Regional Championships 2024,"San Antonio, US",SAN2oKS0eXY6vLbFk3uM,2023-12-15,2023-12-17,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+9a05eb4049d1440745f4a6606a7583eb,Stuttgart Pokémon Regional Championships 2024,"Stuttgart, DE",ST2Ioba5mzZgxqROmLxW,2023-12-09,2023-12-10,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+b0ff775ca3a2024bacc417accfba53ce,Gdansk Pokémon Regional Championships 2024,"Gdansk, PL",GD271hOVzPZjalyCaVtJ,2023-11-25,2023-11-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+bdad20bcf1eb5035e8bef1e4d320d8d0,Brisbane Pokémon Regional Championships 2024,"South Brisbane, AU",BR2mBKHGFnebbtoHxW18,2023-11-25,2023-11-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+da8c9cab4108f860ecf0554d5cbc9e32,Latin America Pokémon International Championships 2024,"São Paulo - SP, BR",LA2XU3AEdfrifGl6lj2x,2023-11-17,2023-11-19,rk9.gg/static/images/laic_101x101.png
+821f7741a53353be8f29916a5ea01e94,Toronto Pokémon Regional Championships 2024,"Toronto, CA",TO2FZ82J81OMbBNuiv28,2023-10-27,2023-10-29,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+79d919601baa2a1a8f37782d067ecac5,Lille Pokémon Regional Championships 2024,"Lille, FR",LI2GiqU95KLIbS3JeJZG,2023-10-21,2023-10-22,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+133f1c643dd5e5e76ded096cdc0cc3b9,Sacramento Pokémon Regional Championships 2024,"Sacramento, US",SA2tyam255Ebvfd0Seud,2023-10-13,2023-10-15,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+6a2e64d1c89688112f4be9bcf1aa5509,Peoria Pokémon Regional Championships 2024,"Peoria, US",PE24BluCAn4R6HsYsxJb,2023-10-06,2023-10-08,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+04b381b4bd1e1142439d3533f8c60787,Curitiba Pokémon Regional Championships 2024,"Pinhais - PR, BR",CU21wU4pmWTibJy4JKcb,2023-09-23,2023-09-24,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+0b41c95d1f0f37b8e1e8ddd602cc566b,Barcelona Pokémon Special Event 2024,"Barcelona, ES",BA2rzPwEuFcM5xMNQ6FN,2023-09-16,2023-09-17,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+e8b2c029625892738bd8cfc711844367,Pittsburgh Pokémon Regional Championships 2024,"Pittsburgh, US",PI2qO2IQ3eq5RHED1oJj,2023-09-08,2023-09-10,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+7f448d2aba2f6e57701580e7c6d3bfa2,2023 Pokémon World Championships,"Yokohama, JP",WO232RYJeQLCUDK8qmLC,2023-08-11,2023-08-13,rk9.gg/static/images/worlds2023_logo_125x125.png
+d8b2bc7f21fc98db5b841acea108ffeb,2023 Pokémon North America International Championships,"Columbus, US",NA2MV6cHdbdqvXWs7HAa,2023-06-30,2023-07-02,rk9.gg/static/images/naic_101x110.png
+c65677184e934f6aab872b797f727855,Fresno Pokémon Regional Championships 2023,"Fresno, US",fr2zol30xbnyXVh4U9Xp,2023-06-10,2023-06-11,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+b69220188395fe78efccce1a216b0bea,Milwaukee Pokémon Regional Championships 2023,"Milwaukee, US",MI2mHpVtGi3W9KBVAiPr,2023-06-02,2023-06-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+d1366f9b66699c5bef636dee25066fb0,Santiago Pokémon Regional Championships 2023,"Santiago, Región Metropolitana, CL",SA24cfnGUS7m4BJlX3Sw,2023-06-03,2023-06-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+1da1cff32f7cdeafe2c141589a8e6f7f,Torino Pokémon Special Championships,"10126 Torino, IT",TO2MrvCHZpK3m1svlBvv,2023-06-03,2023-06-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+ba1bb25ab8fb343e97c3bceaa0e6dcb0,Hartford Pokémon Regional Championships 2023,"Hartford, US",HA22UO6Jly3ArdsSqMkw,2023-05-19,2023-05-21,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+9c1858f0d60a43ac7676ddaaeeab056b,Malmö Pokémon Regional Championships 2023,"215 32 Malmö, SE",MAbpiUxdt7Vcs2bQImWZ,2023-05-20,2023-05-21,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+9e69001cec2fc98c21e57413abe64a5e,Portland Pokémon Regional Championships 2023,"Portland, US",xz2deBnaAtiQYiWRioh8,2023-05-05,2023-05-07,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+93a83d8256201fe13d9d7b1cf7be72e6,São Paulo Pokémon Regional Championships 2023,"São Paulo, BR",SPbmTrT1q3B4liUbIcAy,2023-05-06,2023-05-07,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+f631bfd68eb3835ff8cd99765ad87e5b,2023 Pokémon Europe International Championships,"London, UK",EU2c3yZHykN4AQ65OTBz,2023-04-14,2023-04-16,rk9.gg/static/images/euic_101x110.png
+605195847fd975414b371bb6ddd13866,Fort Wayne Pokémon Regional Championships 2023,"Fort Wayne, US",FW22ZFxaHumKzmfUItVF,2023-03-31,2023-04-02,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+a1eb7af225bf3f4b2472eefe02461189,Sydney Pokémon Regional Championships 2023,"Sydney, AU",u625dn51S2yIWqXPXDJL,2023-04-01,2023-04-02,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+a28840e99f022cc9fdc21aa89f2e97f0,Charlotte Pokémon Regional Championships 2023,"Charlotte, US",DW2KvfN94weVjRBvGcNI,2023-03-24,2023-03-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+657e8bf901c41a5831cee8c1e96daa51,Utrecht Pokémon Special Championships 2023,"3521 AL Utrecht, NL",iq8HkJq9v11G7GoAOsT0,2023-03-18,2023-03-19,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+bb2559c671c4e76ca93777510bc8dfcc,Vancouver Pokémon Regional Championships 2023,"Vancouver, CA",8HIYbbqbaWZ1dpj9uQG3,2023-03-10,2023-03-12,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+9c7b3e1fb0801859548c6f8306ac2dd7,Natal Pokémon Regional Championships 2023,"Natal, BR",NaKAJTF2cJgzF5UfyiO0,2023-03-11,2023-03-12,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+448a702aca6afb6e55b2347ad0a3cb96,Perth Pokémon Regional Championships 2023,"Perth, AU",DQ2i9c14imJ8nxdBYtf7,2023-03-04,2023-03-05,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+2e9e5f31b8224ea00252a3a3b9f5adb5,Knoxville Pokémon Regional Championships 2023,"Knoxville, US",0pN73b3SizrkohJlZPd6,2023-02-24,2023-02-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+9e2a46c69a258b98ac54bb433452669e,Bochum Pokémon Regional Championships 2023,"D-44791 Bochum, DE",Ut3nbmM0sUXlyQolPRc3,2023-02-25,2023-02-26,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+d8445ed74bd80584a1fbcfa80dedbefc,2023 Pokémon Oceania International Championships,"South Wharf, AU",OCpGIIa9m9BGzlZ8B5Gt,2023-02-17,2023-02-19,rk9.gg/static/images/ocic_2023_127h.png
+28d417d9df169faccb725316e77aa250,Orlando Pokémon Regional Championships 2023,"Orlando, US",h7kIYruNMePQMy4UZkMj,2023-02-03,2023-02-05,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+70ca54271e3b234c5bf06108b5a4166b,Liverpool Pokémon Regional Championships 2023,"LIverpool, UK",HmWfWFbzLDG5RVOedmuu,2023-01-21,2023-01-22,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+1890fb173bf57644e92ad1f91409c74d,San Diego Pokémon Regional Championships 2023,"San Diego, US",df5AzRjKxTb62H7BsbOe,2023-01-06,2023-01-08,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+db28b0ddb9a19baa6197ccaa91b2d731,Arlington Pokémon Regional Championships 2022-2023,"Arlington, US",,2022-12-16,2022-12-18,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+94b8e9b641d759298e89c03632afd176,Toronto Pokémon Regional Championships 2022-2023,"Toronto, CA",,2022-12-02,2022-12-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+d7e36f80713e351917cc3b2689f036ec,Stuttgart Pokémon Regional Championships 2022-2023,"70629 Stuttgart, DE",,2022-12-03,2022-12-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+89551b3c1cd479e7b3c160d2db598d68,Brisbane Pokémon Regional Championships 2022-2023,"South Brisbane, AU",,2022-12-03,2022-12-04,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+bb3be95c778927d350108f0b5a6393a0,2023 Pokémon Latin America International Championships,"São Paulo - SP, BR",,2022-11-25,2022-11-27,rk9.gg/static/images/laic_101x101.png
+f4226d8a7867eed74e6c951170c41200,Warsaw Pokémon Regional Championships 2022-2023,"01-222 Warszawa, PL",,2022-11-12,2022-11-13,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+c2a38d52a39ac26c1e8a8f3764d98ee1,Lille Pokémon Regional Championships 2022-2023,"59800 Lille, FR",,2022-10-22,2022-10-23,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+bb252462afe8803ce43515beec6fa615,Salt Lake City Pokémon Regional Championships 2022-2023,"Salt Lake City, US",,2022-10-14,2022-10-16,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+dbac6a294a68e9431f21ab0ce1efa053,Peoria Pokémon Regional Championships 2022-2023,"Peoria, US",,2022-09-30,2022-10-02,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+2edf70797f84a374969655f47ec99b91,Baltimore Pokémon Regional Championships 2022-2023,"Baltimore, US",,2022-09-16,2022-09-18,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+ef3772587e6d4edd67e4779c58c03d7d,Porto Alegre Pokémon Regional Championships 2022-2023,"Sarandi, Porto Alegre, BR",,2022-09-17,2022-09-18,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+e68132fe544336787edac445a15a8589,Bilbao Pokémon Special Event 2022-2023,"48902 Barakaldo, ES",,2022-09-17,2022-09-18,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+2f5102e18f5d84fe70bb129415b1bdba,2022 Pokémon World Championships,"London, UK",worlds-2022-open-vgc,2022-08-18,2022-08-21,rk9.gg/static/images/Worlds_logo_125h.png
+3122421ceb39654d92a75fd24c5b74bc,2022 Pokémon North America International Championships,"Columbus, US",naic-2022-vgc,2022-06-24,2022-06-26,rk9.gg/static/images/naic_101x110.png
+80e5227b9094a1fa2def0d6dd2c5c480,Milwaukee Pokémon Regional Championships,"Milwaukee, US",FCdaZGIRfhxzpyJeifjR,2022-06-17,2022-06-19,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+d1c28ac8e7f28acdca64663e4663bd67,Pokémon Oceania Regional Championships – Melbourne,"St. Kilda, AU",oODGAzfPveCKNhAcqKqV,2022-06-11,2022-06-12,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+f7deafdeadfc5152d14f6297cbe9e72c,Pokémon Milan Special Championships,"20090 Assago, IT",kCzPMfgBag8G8rkZ10R7,2022-06-04,2022-06-05,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+a9da65b16fbc32912c94101a113ae534,Santiago Pokémon Regional Championships,"Santiago, CL",idKiT2j3vLKl0IpWrC1p,2022-06-04,2022-06-05,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+5f436ba5a6bc199c609635171bdd3287,Vancouver Pokémon Regional Championships,"Vancouver, CA",cHiwCmstTuP8g4ACNjeR,2022-05-27,2022-05-29,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+102365bdd93e30f063c54add3ae233e3,Bremen Pokémon Regional Championships 2022,"28215 Bremen, DE",e5JYlCKgq8me9hGzzIxm,2022-05-28,2022-05-29,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+ed982fb5c062dc389ec1e1645333c637,Lille Pokémon Regional Championships,"Lille, FR",aLTz18CVvm3GbddMAp4e,2022-05-21,2022-05-22,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+873d51cbba3968d43337b5317a2393fe,Pokémon Oceania Regional Championships – Perth,"Perth, AU",OveKOGiY4dnc3hwx18Dg,2022-05-21,2022-05-22,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+8f8bee4bcddd29710155809b03deaacb,Secaucus Pokémon Regional Championships,"Secaucus, US",x16zzXS9FKRhCQQi8bIu,2022-05-20,2022-05-22,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+85712b1ebfe8763f809be0634548387a,Joinville Pokémon Regional Championships,"Joinville - SC, BR",,2022-05-07,2022-05-08,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+c75b1de334be33f490743e6e871659cc,Bilbao Special Championships,"48902 Barakaldo, ES",h7M5KptPtO98K318nkdV,2022-05-07,2022-05-08,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+29231653f5dedebf306180c32c529123,Indianapolis Pokémon Regional Championships,"Indianapolis, US",ro4a2hj3G4D730k8yprY,2022-05-06,2022-05-08,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+8e6650c33cc6b36ad015db1736b8b05b,2022 Pokémon European International Championships,"Frankfurt am Main, DE",euic-2022-vg,2022-04-22,2022-04-24,rk9.gg/static/images/euic_101x110.png
+b300e19618880e43f74baa9541d87414,São Paulo Pokémon Regional Championships,"São Paulo - SP, BR",,2022-04-02,2022-04-03,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+8b06e4d26f91cdccbbd48a2fa8a23f6d,Liverpool Pokémon Regional Championships,"Liverpool, UK",2KMwM9BWpugSqwXzhk9L,2022-03-26,2022-03-27,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+3a285ccf39cd6065a532078f45587e90,Salt Lake City Pokémon Regional Championships,"Salt Lake City, US",TtF9O8n416pwR34O0Pxc,2022-03-18,2022-03-20,rk9.gg/static/images/pokemon_regional_championships_100x100.png
+7d6a4d2729723a1cf496e854a30f792e,Brisbane Pokémon Regional Championships,"South Brisbane, AU",dlYyc4UvYTrVbvKCZXoE,2022-03-12,2022-03-13,rk9.gg/static/images/pokemon_regional_championships_100x100.png
