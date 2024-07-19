@@ -125,7 +125,7 @@ def upload_pokemon(filepath):
     connection.commit()
 
 def upload_all():
-    """Uploads all data to the PostgreSQL database."""
+    """Uploads all data to the PostgreSQL database. """
 
     try:
         upload_tournaments('data/tournaments.csv')

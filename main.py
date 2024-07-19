@@ -23,6 +23,7 @@ def make_all_tournaments_csv():
 
     processor.create_csv(teams, "data/teams.csv")
 
+
 def make_pokemon_csv():
     # Fetch the pokemon data from the pokeapi
     data = pokeapi.fetch_pokemon_data()
@@ -37,8 +38,11 @@ def test_team_fetch():
 
     processor.create_csv(team_data, "data/teams.csv")
 
-def main():
-    processor.create_csv(scraper.fetch_team("data/standings.csv"), "data/teams.csv", type = "teams")
+def make_all():
+    make_all_tournaments_csv()
+    make_pokemon_csv()
 
+def main():
+    make_pokemon_csv()
 
 main()
