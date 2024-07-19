@@ -7,7 +7,7 @@ import pokebase as pb
 
 # This function will fetch some pokemon data from the pokeapi database and store it in the local database.
 def fetch_pokemon_data():
-    i = 0 # Start at 500 because the first 500 pokemon are already in the database
+    i = 1 # Start at 500 because the first 500 pokemon are already in the database
     data = [
         (
             [
@@ -21,7 +21,9 @@ def fetch_pokemon_data():
                 "special_attack",
                 "special_defense",
                 "speed",
-                "abilities",
+                "ability1",
+                "ability2",
+                "ability3",
             ]
         )
     ]  # Start up those headers
@@ -43,10 +45,12 @@ def fetch_pokemon_data():
                 base_stats["special-attack"],
                 base_stats["special-defense"],
                 base_stats["speed"],
-                abilities,
+                abilities[0],
+                abilities[1] if len(abilities) > 1 else None,
+                abilities[2] if len(abilities) > 2 else None,
             ]
         )
         i += 1
-        if i >= 10:
+        if i >= 1025:
             break
     return data

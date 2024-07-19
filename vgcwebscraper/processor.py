@@ -18,6 +18,8 @@ def create_csv(data, filepath, type):
         df = clean_standings_data(df)
     elif type == 'teams':
         df = clean_teams_data(df)
+    elif type == 'pokemon':
+        df = clean_pokemon_data(df)
     df.to_csv(filepath, index = False, encoding = 'utf-8', header = False)
 
 
@@ -30,6 +32,8 @@ def continue_csv(data, filepath, type):
         df = clean_tournament_data(df)
     elif type == 'standings':
         df = clean_standings_data(df)
+    elif type == 'pokemon':
+        df = clean_pokemon_data(df)
 
     df.to_csv(filepath, mode = 'a', index = False, header = False, encoding = 'utf-8')
 
@@ -70,12 +74,7 @@ def clean_standings_data(df):
 
 def clean_pokemon_data(df):
     """Splits the list of pokemon abilities into the 3 ability columns (ability1, ability2, ability3) and fills them with the respective abilities, or NONE if they don't exist."""
-
-    df = df.drop_duplicates()
-
-    df['ability1'] = df['abilities'].apply(lambda x: x[0] if len(x) > 0 else 'NONE')
-    df['ability2'] = df['abilities'].apply(lambda x: x[1] if len(x) > 1 else 'NONE')
-    df['ability3'] = df['abilities'].apply(lambda x: x[2] if len(x) > 2 else 'NONE')
+    print(df)
 
     return df
 

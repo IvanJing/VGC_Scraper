@@ -29,7 +29,7 @@ def make_pokemon_csv():
     data = pokeapi.fetch_pokemon_data()
 
     # Create a CSV file with the pokemon data
-    processor.continue_csv(data, "data/pokemon.csv")
+    processor.create_csv(data, "data/pokemon.csv", "pokemon")
 
 def test_team_fetch():
     standings_path = "data/standings.csv"
