@@ -98,7 +98,6 @@ pokemon_id,name,health,attack,defense,special_attack,special_defense,speed,abili
 97,hypno,85,73,70,73,115,67,"['insomnia', 'forewarn', 'inner-focus']"
 98,krabby,30,105,90,25,25,50,"['hyper-cutter', 'shell-armor', 'sheer-force']"
 99,kingler,55,130,115,50,50,75,"['hyper-cutter', 'shell-armor', 'sheer-force']"
-pokemon_id,name,health,attack,defense,special_attack,special_defense,speed,abilities
 100,voltorb,40,30,50,55,55,100,"['soundproof', 'static', 'aftermath']"
 101,electrode,60,50,70,80,80,150,"['soundproof', 'static', 'aftermath']"
 102,exeggcute,60,40,80,60,45,40,"['chlorophyll', 'harvest']"
@@ -199,7 +198,6 @@ pokemon_id,name,health,attack,defense,special_attack,special_defense,speed,abili
 197,umbreon,95,65,110,60,130,65,"['synchronize', 'inner-focus']"
 198,murkrow,60,85,42,85,42,91,"['insomnia', 'super-luck', 'prankster']"
 199,slowking,95,75,80,100,110,30,"['oblivious', 'own-tempo', 'regenerator']"
-pokemon_id,name,health,attack,defense,special_attack,special_defense,speed,abilities
 200,misdreavus,60,60,60,85,85,85,['levitate']
 201,unown,48,72,48,72,48,48,['levitate']
 202,wobbuffet,190,33,58,33,58,33,"['shadow-tag', 'telepathy']"

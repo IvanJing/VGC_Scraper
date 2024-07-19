@@ -2,6 +2,7 @@
 import os
 import sqlalchemy as sqlachl
 import pandas as pd
+import processor as process
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -92,5 +93,46 @@ def upload_teams(filepath):
     df.to_sql('Team_members', engine, if_exists='append', index=False)
     connection.commit()
 
+def upload_pokemon(filepath):
+    """Uploads the pokemon data to the PostgreSQL database."""
+
+    df = pd.read_csv(filepath)
+
+    df = process.clean_pokemon_data(df)
+
+    engine = sqlachl.create_engine(dbAPI, echo=True)
+
+    with engine.connect() as connection:
+        connection.execute(sqlachl.text("""
+        CREATE TABLE IF NOT EXISTS Pokemon(
+            pokemon_id INT,
+            name VARCHAR(50),
+            name INT,
+            health INT,
+            attack INT,
+            defense INT,
+            special_attack INT,
+            special_defense INT,
+            speed INT,
+            ability1 VARCHAR(50),
+            ability2 VARCHAR(50),
+            ability3 VARCHAR(50),
+            PRIMARY KEY (pokemon_id)
+            );                                
+                                        """))
+        
+    df.to_sql('Pokemon', engine, if_exists='append', index=False)
+    connection.commit()
+
+def upload_all():
+    """Uploads all data to the PostgreSQL database."""
+
+    try:
+        upload_tournaments('data/tournaments.csv')
+        upload_standings('data/standings.csv')
+        upload_teams('data/teams.csv')
+        upload_pokemon('data/pokemon.csv')
+    except Exception as e:
+        print(e)
 
 upload_teams('data/teams.csv')

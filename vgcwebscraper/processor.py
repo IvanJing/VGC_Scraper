@@ -68,10 +68,20 @@ def clean_standings_data(df):
     
     return df
 
+def clean_pokemon_data(df):
+    """Splits the list of pokemon abilities into the 3 ability columns (ability1, ability2, ability3) and fills them with the respective abilities, or NONE if they don't exist."""
+
+    df = df.drop_duplicates()
+
+    df['ability1'] = df['abilities'].apply(lambda x: x[0] if len(x) > 0 else 'NONE')
+    df['ability2'] = df['abilities'].apply(lambda x: x[1] if len(x) > 1 else 'NONE')
+    df['ability3'] = df['abilities'].apply(lambda x: x[2] if len(x) > 2 else 'NONE')
+
+    return df
 
 def clean_teams_data(df):
     """Cleans the teams data by dropping duplicates, checking column validity, and converting columns to the correct formats."""
-                
+            
     return df
 
 
