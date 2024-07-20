@@ -3,7 +3,7 @@
 import os
 import sqlalchemy as sqlachl
 import pandas as pd
-import vgcwebscraper.processor as process
+import src.datacollection.processor as process
 from dotenv import load_dotenv
 
 load_dotenv()
