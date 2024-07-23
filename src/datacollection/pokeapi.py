@@ -1,56 +1,74 @@
 import pokebase as pb
+import concurrent.futures
+import time
 
-# This is an import of the pokebase library, a python wrapper made by Alessandro Pezzè for the pokeapi database. Check out his github repo here at: https://github.com/PokeAPI/pokebase
-# Also visit the PokeAPI website at: https://pokeapi.co/
-# This file will be used to fetch all available pokemon stats, abilities, and forms from the pokeapi database, then store them in the local database for later use.
+def fetch_all_pokemon_data():
+    def fetch_pokemon(index):
+        try:
+            pokemon = pb.pokemon(index)
+            if pokemon:
+                name = pokemon.name
+                base_stats = {stat.stat.name: stat.base_stat for stat in pokemon.stats}
+                abilities = [ability.ability.name for ability in pokemon.abilities]
+                types = pokemon.types
 
+                pokemon_data = [
+                    index,
+                    name,
+                    types[0].type.name if types else None,
+                    types[1].type.name if len(types) > 1 else None,
+                    base_stats.get("hp"),
+                    base_stats.get("attack"),
+                    base_stats.get("defense"),
+                    base_stats.get("special-attack"),
+                    base_stats.get("special-defense"),
+                    base_stats.get("speed"),
+                    abilities[0] if abilities else None,
+                    abilities[1] if len(abilities) > 1 else None,
+                    abilities[2] if len(abilities) > 2 else None,
+                ]
+                print(f"Fetched data for Pokémon index {index}")
+                return pokemon_data
+            else:
+                print(f"Pokémon with index {index} not found.")
+                return None
+        except Exception as e:
+            print(f"Error fetching Pokémon with index {index}: {e}")
+            return None
 
-# This function will fetch some pokemon data from the pokeapi database and store it in the local database.
-def fetch_pokemon_data():
-    i = 1  # Start at 500 because the first 500 pokemon are already in the database
-    data = [
-        (
-            [
-                "pokemon_id",
-                "name",
-                "type1",
-                "type2",
-                "health",
-                "attack",
-                "defense",
-                "special_attack",
-                "special_defense",
-                "speed",
-                "ability1",
-                "ability2",
-                "ability3",
-            ]
-        )
-    ]  # Start up those headers
-    while (
-        pokemon := pb.pokemon(i)
-    ) is not None:  # Basically just keep going until I have all of the pokemon. All of them.
-        name = pokemon.name
-        base_stats = {stat.stat.name: stat.base_stat for stat in pokemon.stats}
-        abilities = [ability.ability.name for ability in pokemon.abilities]
-        data.append(
-            [
-                i,
-                name,
-                types[0].type.name if (types := pokemon.types) else None,
-                types[1].type.name if len(types) > 1 else None,
-                base_stats["hp"],
-                base_stats["attack"],
-                base_stats["defense"],
-                base_stats["special-attack"],
-                base_stats["special-defense"],
-                base_stats["speed"],
-                abilities[0],
-                abilities[1] if len(abilities) > 1 else None,
-                abilities[2] if len(abilities) > 2 else None,
-            ]
-        )
-        i += 1
-        if i >= 1025:
-            break
+    headers = [
+        "pokemon_id",
+        "name",
+        "type1",
+        "type2",
+        "health",
+        "attack",
+        "defense",
+        "special_attack",
+        "special_defense",
+        "speed",
+        "ability1",
+        "ability2",
+        "ability3",
+    ]
+    data = [headers]
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {executor.submit(fetch_pokemon, index): index for index in range(1, 1025)}
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                result = future.result()
+                if result:
+                    data.append(result)
+            except Exception as e:
+                index = futures[future]
+                print(f"An error occurred with index {index}: {e}")
+
+            # Add a small delay to avoid rate limiting
+            time.sleep(0.1)
+
     return data
+
+# Call the function to fetch all Pokémon data
+pokemon_data = fetch_all_pokemon_data()
+print("Finished fetching Pokémon data")

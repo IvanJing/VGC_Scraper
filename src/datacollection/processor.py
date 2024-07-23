@@ -6,8 +6,8 @@ Because it's almost certain that new data will be acquired over the lifetime of 
 """
 
 import pandas as pd
-import scraper
-import pokeapi
+import datacollection.scraper as scraper
+import datacollection.pokeapi as pokeapi
 
 TOURNAMENT_PATH = "datasets/tournaments.csv"
 STANDINGS_PATH = "datasets/standings.csv"
@@ -145,7 +145,7 @@ def make_all_csv():
     data = scraper.fetch_all_tournament_data(response)
     standings = scraper.fetch_standings_data(data)
     teams = scraper.fetch_team_data(standings)
-    pokemon = pokeapi.fetch_pokemon_data()
+    pokemon = pokeapi.fetch_all_pokemon_data()
 
     create_csv(data, TOURNAMENT_PATH, "tournament")
     create_csv(standings, STANDINGS_PATH, "standings")
@@ -174,5 +174,8 @@ def make_teams_csv():
 def make_pokemon_csv():
     """Fetches Pokémon data and creates a CSV file."""
 
-    data = pokeapi.fetch_pokemon_data()
+    data = pokeapi.fetch_all_pokemon_data()
     create_csv(data, POKEMON_PATH, "pokemon")
+
+def write_lines(row, df):
+    """Writes a single row to a given pandas dataframe."""

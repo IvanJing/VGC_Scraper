@@ -3,7 +3,7 @@
 import os
 import sqlalchemy as sqlachl
 import pandas as pd
-import src.datacollection.processor as process
+import datacollection.processor as process
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -82,7 +82,7 @@ def upload_teams(filepath):
     with engine.connect() as connection:
         connection.execute(
             sqlachl.text(
-                """
+                """ 
         CREATE TABLE IF NOT EXISTS Team_members(
             tournament_id VARCHAR(50),
             player_id VARCHAR(50),
@@ -252,12 +252,10 @@ def upload_all():
     """Uploads all data to the PostgreSQL database."""
 
     try:
-        upload_tournaments("data/tournaments.csv")
-        upload_standings("data/standings.csv")
-        upload_teams("data/teams.csv")
-        upload_pokemon("data/pokemon.csv")
+        upload_tournaments("src/data/tournaments.csv")
+        upload_standings("src/data/standings.csv")
+        upload_teams("src/data/teams.csv")
+        upload_pokemon("src/data/pokemon.csv")
     except Exception as e:
         print(e)
 
-
-upload_teams("data/teams.csv")

@@ -10,7 +10,6 @@ import concurrent.futures
 from bs4 import BeautifulSoup
 import requests
 import hashlib
-from datetime import datetime
 from daterangeparser import parse
 import pandas as pd
 
@@ -299,8 +298,8 @@ def fetch_team_data(filepath):
                 members = future.result()
                 for member in members:
                     team_data.append([row["tournament_id"], row["player_id"], *member])
-            except Exception as exc:
-                print(f"An error occurred: {exc}")
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
     return team_data
 

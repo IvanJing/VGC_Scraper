@@ -1,9 +1,4 @@
-from src.imports import processor, scraper, pokeapi, uploader
-
-
-
-
-
+from imports import processor, scraper, pokeapi, uploader
 
 
 def test_team_fetch():
@@ -14,10 +9,14 @@ def test_team_fetch():
     processor.create_csv(team_data, "data/teams.csv")
 
 def make_all():
-    make_all_tournaments_csv()
-    make_pokemon_csv()
+    processor.make_tournaments_csv()
+    processor.make_standings_csv()
+    processor.make_teams_csv()
+    processor.make_pokemon_csv()
 
 def main():
-    make_pokemon_csv()
+    processor.make_pokemon_csv()
 
 main()
+
+ 
