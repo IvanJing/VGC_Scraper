@@ -8,13 +8,17 @@ Because it's almost certain that new data will be acquired over the lifetime of 
 import pandas as pd
 import datacollection.scraper as scraper
 import datacollection.pokeapi as pokeapi
+import os
 
-TOURNAMENT_PATH = "datasets/tournaments.csv"
-STANDINGS_PATH = "datasets/standings.csv"
-TEAMS_PATH = "datasets/teams.csv"
-POKEMON_PATH = "datasets/pokemon.csv"
+TOURNAMENT_PATH = r"src\data\tournaments.csv"
+STANDINGS_PATH = r"src\data\standings.csv"
+TEAMS_PATH = r"src\data\teams.csv"
+POKEMON_PATH = r"src\data\pokemon.csv"
+ABILITIES_PATH = r"src\data\abilities.csv"
+MOVES_PATH = r"src\data\moves.csv"
+ITEMS_PATH = r"src\data\items.csv"
 
-def create_csv(data, filepath, data_type):
+def create_csv(df, filepath):
     """
     Creates a CSV file from a list and saves it to the specified filepath.
     
@@ -23,17 +27,11 @@ def create_csv(data, filepath, data_type):
         filepath: The path where the CSV will be saved.
         data_type: The type of data being saved.
     """
+
+    if type(df) == list:
+        df = pd.DataFrame(df)
     
-    df = pd.DataFrame(data)
-    
-    if data_type == 'tournament':
-        df = clean_tournament_data(df)
-    elif data_type == 'standings':
-        df = clean_standings_data(df)
-    elif data_type == 'teams':
-        df = clean_teams_data(df)
-    elif data_type == 'pokemon':
-        df = clean_pokemon_data(df)
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
     
     df.to_csv(filepath, index=False, encoding='utf-8', header=False)
 
@@ -71,6 +69,124 @@ def add_column_to_csv(column_name, column_data, filepath):
     df = pd.read_csv(filepath, encoding='utf-8')
     df[column_name] = column_data
     df.to_csv(filepath, index=False, encoding='utf-8')
+
+
+
+def make_all_csv():
+    """Fetches all data and creates CSV files."""
+
+    make_tournaments_csv()
+    make_standings_csv()
+    make_teams_csv()
+    make_pokemon_csv()
+    make_abilities_csv()
+    make_moves_csv()
+    make_held_items_csv()
+
+
+def fetch_game_data():
+    """This is just a seperate function for retrieving ONLY pokemon, moves, abilities, and items data."""
+    make_pokemon_csv()
+    make_moves_csv()
+    make_abilities_csv()
+    make_held_items_csv()
+
+def fetch_official_data():
+    """This is a seperate function for retrieving ONLY tournament, standings, and team data."""
+    make_tournaments_csv()
+    make_standings_csv()
+    make_teams_csv()
+    make_pokemon_csv()
+
+def make_tournaments_csv():
+    """Fetches tournament data and creates a CSV file."""
+    url = "https://rk9.gg/events/pokemon"
+    response = scraper.fetch_html(url)
+    data = scraper.fetch_all_tournament_data(response)
+    df = pd.DataFrame(data)
+    df = clean_tournament_data(df)
+
+    create_csv(df, TOURNAMENT_PATH)
+
+def make_standings_csv():
+    """Fetches standings data and creates a CSV file."""
+    df = pd.read_csv(TOURNAMENT_PATH)
+    data = scraper.fetch_standings_data(df)
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_standings_data(df)
+
+    create_csv(df, STANDINGS_PATH)
+
+def make_teams_csv():
+    """Fetches teams data and creates a CSV file."""
+
+    data = scraper.fetch_team_data(pd.read_csv(STANDINGS_PATH))
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_teams_data(df)
+
+    create_csv(df, TEAMS_PATH)
+
+def make_pokemon_csv():
+    """Fetches Pokémon data from the Pokeapi and creates a CSV file."""
+
+    data = pokeapi.fetch_pokemon_api()
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_pokemon_data(df)
+
+    create_csv(df, POKEMON_PATH)
+    
+def make_abilities_csv():
+    """Fetches ability data from the Pokeapi and creates a CSV file."""
+
+    data = pokeapi.fetch_ability_api()
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_abilities_data(df)
+
+    create_csv(df, ABILITIES_PATH)
+
+def make_moves_csv():
+    """Fetches move data from the Pokeapi and creates a CSV file."""
+
+    data = pokeapi.fetch_move_api()
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_moves_data(df)
+
+    create_csv(df, MOVES_PATH)
+
+def make_held_items_csv():
+    """Fetches held item data from the Pokeapi and creates a CSV file."""
+
+    data = pokeapi.fetch_held_item_api()
+
+    headers = data[0]
+    rows = data[1:]
+
+    df = pd.DataFrame(rows, columns=headers)
+    df = clean_items_data(df)
+
+    create_csv(df, ITEMS_PATH)
+
+"""
+
+Below are functions for cleaning the data in the CSV files. Since each data type can come in many forms due to the inconsistency of their sources, each type has their own pre-defined cleaning logic. 
+This allows for a more organized and efficient cleaning process.
+
+"""
 
 def clean_tournament_data(df):
     """
@@ -137,45 +253,58 @@ def clean_teams_data(df):
     # Additional cleaning logic can be added here
     return df
 
-def make_all_csv():
-    """Fetches all data and creates CSV files."""
+def clean_abilities_data(df):
+    """Cleans the abilities data."""
 
-    url = "https://rk9.gg/events/pokemon"
-    response = scraper.fetch_html(url)
-    data = scraper.fetch_all_tournament_data(response)
-    standings = scraper.fetch_standings_data(data)
-    teams = scraper.fetch_team_data(standings)
-    pokemon = pokeapi.fetch_all_pokemon_data()
+    df = df.drop_duplicates()
 
-    create_csv(data, TOURNAMENT_PATH, "tournament")
-    create_csv(standings, STANDINGS_PATH, "standings")
-    create_csv(teams, TEAMS_PATH, "teams")
-    create_csv(pokemon, POKEMON_PATH, "pokemon")
+    separator = "Overworld:"
+    df['effect'] = df['effect'].fillna('').astype(str)
+    df['effect'] = df['effect'].str.split(separator, n=1).str[0]
+    df['effect'] = df['effect'].str.replace('\n', '', regex=False).str.strip()
 
-def make_tournaments_csv():
-    """Fetches tournament data and creates a CSV file."""
-    url = "https://rk9.gg/events/pokemon"
-    response = scraper.fetch_html(url)
-    data = scraper.fetch_all_tournament_data(response)
-    create_csv(data, TOURNAMENT_PATH, "tournament")
+    df['effect'] = df['effect'].str.replace(r'\s*.\n\s*', '', regex= True)
+    df['effect'] = df['effect'].str.replace(r'\s+', ' ', regex= True)
+    df['effect'] = df['effect'].str.replace('"', '')
 
-def make_standings_csv():
-    """Fetches standings data and creates a CSV file."""
-    df = pd.read_csv(TOURNAMENT_PATH)
-    standings = scraper.fetch_standings_data(df)
-    create_csv(standings, STANDINGS_PATH, "standings")
+    print("cleaning done")
+    return df
 
-def make_teams_csv():
-    """Fetches teams data and creates a CSV file."""
+def clean_moves_data(df):
+    """
+    Cleans the moves data.
+    
+    Args:
+        df: The DataFrame containing the moves data.
+    
+    Returns:
+        A cleaned DataFrame.
+    """
 
-    teams = scraper.fetch_team_data(pd.read_csv(STANDINGS_PATH))
-    create_csv(teams, TEAMS_PATH, "teams")
+    #remove duplicates
+    df = df.drop_duplicates()
 
-def make_pokemon_csv():
-    """Fetches Pokémon data and creates a CSV file."""
+    #remove new lines
+    df['long_effect'] = df['long_effect'].fillna('').astype(str)
+    df['long_effect'] = df['long_effect'].str.replace('\n', '')
 
-    data = pokeapi.fetch_all_pokemon_data()
-    create_csv(data, POKEMON_PATH, "pokemon")
+    df['short_effect'] = df['short_effect'].fillna('').astype(str)
+    df['short_effect'] = df['short_effect'].str.replace('\n', '')
 
-def write_lines(row, df):
-    """Writes a single row to a given pandas dataframe."""
+    return df
+
+def clean_items_data(df):
+    """Cleans the csv for item data. """
+
+    df = df.drop_duplicates()
+
+    separator = "Used on a"
+    df['effect'] = df['effect'].fillna('').astype(str)
+    df['effect'] = df['effect'].str.split(separator, n=1).str[0]
+    df['effect'] = df['effect'].str.replace('\n', '', regex=False).str.strip()
+
+    df['effect'] = df['effect'].str.replace(r'\s*:\s*', ': ', regex= True)
+    df['effect'] = df['effect'].str.replace(r'\s+', ' ', regex= True)
+    df['effect'] = df['effect'].str.replace('"', '')
+    
+    return df

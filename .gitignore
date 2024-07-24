@@ -1,7 +1,10 @@
 .venv/
 __pycache__/
-data/pokemon.csv
-data/standings.csv
-data/teams.csv
-data/tournaments.csv
+src/data/pokemon.csv
+src/data/standings.csv
+src/data/teams.csv
+src/data/abilities.csv
+src/data/moves.csv
+src/data/items.csv
+src/data/tournaments.csv
 .env
