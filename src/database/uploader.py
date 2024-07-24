@@ -111,8 +111,6 @@ def upload_pokemon(filepath):
 
     df = pd.read_csv(filepath)
 
-    df = process.clean_pokemon_data(df)
-
     engine = sqlachl.create_engine(dbAPI, echo=True)
 
     with engine.connect() as connection:
@@ -122,6 +120,8 @@ def upload_pokemon(filepath):
         CREATE TABLE IF NOT EXISTS Pokemon(
             pokemon_id INT,
             name VARCHAR(50),
+            type1 VARCHAR(50),
+            type2 VARCHAR(50),
             health INT,
             attack INT,
             defense INT,
@@ -140,6 +140,84 @@ def upload_pokemon(filepath):
     df.to_sql("Pokemon", engine, if_exists="append", index=False)
     connection.commit()
 
+def upload_moves(filepath):
+    """Uploads the moves data to the PostgreSQL database."""
+
+    df = pd.read_csv(filepath)
+
+    engine = sqlachl.create_engine(dbAPI, echo=True)
+
+    with engine.connect() as connection:
+        connection.execute(
+            sqlachl.text(
+                """
+        CREATE TABLE IF NOT EXISTS Moves(
+            move_id INT,
+            name VARCHAR(50),
+            type VARCHAR(50),
+            category VARCHAR(50),
+            power INT,
+            accuracy INT,
+            long_effect VARCHAR(255),
+            short_effect VARCHAR(255),
+            PRIMARY KEY (move_id)
+            );                                
+                                        """
+            )
+        )
+
+    df.to_sql("Moves", engine, if_exists="append", index=False)
+    connection.commit()
+
+def upload_abilities(filepath):
+    """Uploads the abilities data to the PostgreSQL database."""
+
+    df = pd.read_csv(filepath)
+
+    df = process.clean_abilities_data(df)
+
+    engine = sqlachl.create_engine(dbAPI, echo=True)
+
+    with engine.connect() as connection:
+        connection.execute(
+            sqlachl.text(
+                """
+        CREATE TABLE IF NOT EXISTS Abilities(
+            ability_id INT,
+            name VARCHAR(50),
+            description VARCHAR(255),
+            PRIMARY KEY (ability_id)
+            );                                
+                                        """
+            )
+        )
+
+    df.to_sql("Abilities", engine, if_exists="append", index=False)
+    connection.commit()
+
+def upload_items(filepath):
+    """Uploads the items data to the PostgreSQL database."""
+
+    df = pd.read_csv(filepath)
+
+    engine = sqlachl.create_engine(dbAPI, echo=True)
+
+    with engine.connect() as connection:
+        connection.execute(
+            sqlachl.text(
+                """
+        CREATE TABLE IF NOT EXISTS Items(
+            item_id INT,
+            name VARCHAR(50),
+            item_description VARCHAR(255),
+            PRIMARY KEY (item_id)
+            );                                
+                                        """
+            )
+        )
+
+    df.to_sql("Items", engine, if_exists="append", index=False)
+    connection.commit()
 
 def update_tournament(filepath):
     """Updates the tournament data in the PostgreSQL database."""

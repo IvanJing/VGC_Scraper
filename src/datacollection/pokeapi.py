@@ -88,7 +88,7 @@ def fetch_ability_api():
     headers = [
         "ability_id",
         "name",
-        "effect",
+        "description",
     ]
     ability_data = [headers]
 #
@@ -216,7 +216,7 @@ def fetch_held_item_api():
     headers = [
         "item_id",
         "name",
-        "effect",
+        "item_description",
     ]
     held_item_data = [headers]
 

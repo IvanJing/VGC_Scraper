@@ -136,7 +136,11 @@ def make_pokemon_csv():
     """Fetches Pokémon data from the Pokeapi and creates a CSV file."""
 
     data = pokeapi.fetch_pokemon_api()
-    headers = data[0]
+    headers = [
+        "ability_id",
+        "name",
+        "effect",
+    ]
     rows = data[1:]
 
     df = pd.DataFrame(rows, columns=headers)
@@ -148,7 +152,11 @@ def make_abilities_csv():
     """Fetches ability data from the Pokeapi and creates a CSV file."""
 
     data = pokeapi.fetch_ability_api()
-    headers = data[0]
+    headers = [
+        "ability_id",
+        "name",
+        "description",
+    ]
     rows = data[1:]
 
     df = pd.DataFrame(rows, columns=headers)
@@ -160,7 +168,16 @@ def make_moves_csv():
     """Fetches move data from the Pokeapi and creates a CSV file."""
 
     data = pokeapi.fetch_move_api()
-    headers = data[0]
+    headers = [ 
+        "move_id",
+        "name",
+        "type",
+        "category",
+        "power",
+        "accuracy",
+        "long_effect",
+        "short_effect", 
+    ]
     rows = data[1:]
 
     df = pd.DataFrame(rows, columns=headers)
@@ -173,7 +190,11 @@ def make_held_items_csv():
 
     data = pokeapi.fetch_held_item_api()
 
-    headers = data[0]
+    headers = [
+        "item_id",
+        "name",
+        "item_description",
+    ]
     rows = data[1:]
 
     df = pd.DataFrame(rows, columns=headers)
