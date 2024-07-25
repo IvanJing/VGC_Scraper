@@ -6,6 +6,15 @@ import pandas as pd
 import datacollection.processor as process
 from dotenv import load_dotenv
 
+
+POKEMON_PATH = "src/data/pokemon.csv"
+MOVES_PATH = "src/data/moves.csv"
+ABILITIES_PATH = "src/data/abilities.csv"
+ITEMS_PATH = "src/data/items.csv"
+TORNAMENTS_PATH = "src/data/tournaments.csv"
+STANDINGS_PATH = "src/data/standings.csv"
+TEAMS_PATH = "src/data/teams.csv"
+
 load_dotenv()
 dbAPI = os.getenv("DATABASE_URL")
 
@@ -174,8 +183,6 @@ def upload_abilities(filepath):
 
     df = pd.read_csv(filepath)
 
-    df = process.clean_abilities_data(df)
-
     engine = sqlachl.create_engine(dbAPI, echo=True)
 
     with engine.connect() as connection:
@@ -185,7 +192,7 @@ def upload_abilities(filepath):
         CREATE TABLE IF NOT EXISTS Abilities(
             ability_id INT,
             name VARCHAR(50),
-            description VARCHAR(255),
+            description TEXT,
             PRIMARY KEY (ability_id)
             );                                
                                         """
@@ -330,10 +337,34 @@ def upload_all():
     """Uploads all data to the PostgreSQL database."""
 
     try:
-        upload_tournaments("src/data/tournaments.csv")
-        upload_standings("src/data/standings.csv")
-        upload_teams("src/data/teams.csv")
-        upload_pokemon("src/data/pokemon.csv")
+        upload_tournaments(TORNAMENTS_PATH)
+        upload_standings(STANDINGS_PATH)
+        upload_teams(TEAMS_PATH)
+        upload_pokemon(POKEMON_PATH)
+        upload_moves(MOVES_PATH)
+        upload_abilities(ABILITIES_PATH)
+        upload_items(ITEMS_PATH)
+    except Exception as e:
+        print(e)
+
+def upload_game_data():
+    """Uploads all game data to the PostgreSQL database."""
+
+    try:
+        upload_pokemon(POKEMON_PATH)
+        upload_moves(MOVES_PATH)
+        upload_abilities(ABILITIES_PATH)
+        upload_items(ITEMS_PATH)
+    except Exception as e:
+        print(f'EREREREREREREREAFDSKKJGJBHSDANVDSVSSDVBSOIDN{e}')
+
+def upload_official_data():
+    """Uploads all official data to the PostgreSQL database."""
+
+    try:
+        upload_tournaments(TORNAMENTS_PATH)
+        upload_standings(STANDINGS_PATH)
+        upload_teams(TEAMS_PATH)
     except Exception as e:
         print(e)
 

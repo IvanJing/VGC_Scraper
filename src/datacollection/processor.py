@@ -136,11 +136,7 @@ def make_pokemon_csv():
     """Fetches Pokémon data from the Pokeapi and creates a CSV file."""
 
     data = pokeapi.fetch_pokemon_api()
-    headers = [
-        "ability_id",
-        "name",
-        "effect",
-    ]
+    headers = data[0]
     rows = data[1:]
 
     df = pd.DataFrame(rows, columns=headers)
@@ -154,7 +150,7 @@ def make_abilities_csv():
     data = pokeapi.fetch_ability_api()
     headers = [
         "ability_id",
-        "name",
+        "ability_name",
         "description",
     ]
     rows = data[1:]
@@ -170,7 +166,7 @@ def make_moves_csv():
     data = pokeapi.fetch_move_api()
     headers = [ 
         "move_id",
-        "name",
+        "move_name",
         "type",
         "category",
         "power",
@@ -192,7 +188,7 @@ def make_held_items_csv():
 
     headers = [
         "item_id",
-        "name",
+        "item_name",
         "item_description",
     ]
     rows = data[1:]
@@ -280,13 +276,13 @@ def clean_abilities_data(df):
     df = df.drop_duplicates()
 
     separator = "Overworld:"
-    df['effect'] = df['effect'].fillna('').astype(str)
-    df['effect'] = df['effect'].str.split(separator, n=1).str[0]
-    df['effect'] = df['effect'].str.replace('\n', '', regex=False).str.strip()
+    df['description'] = df['description'].fillna('').astype(str)
+    df['description'] = df['description'].str.split(separator, n=1).str[0]
+    df['description'] = df['description'].str.replace('\n', '', regex=False).str.strip()
 
-    df['effect'] = df['effect'].str.replace(r'\s*.\n\s*', '', regex= True)
-    df['effect'] = df['effect'].str.replace(r'\s+', ' ', regex= True)
-    df['effect'] = df['effect'].str.replace('"', '')
+    df['description'] = df['description'].str.replace(r'\s*.\n\s*', '', regex= True)
+    df['description'] = df['description'].str.replace(r'\s+', ' ', regex= True)
+    df['description'] = df['description'].str.replace('"', '')
 
     print("cleaning done")
     return df
@@ -320,12 +316,12 @@ def clean_items_data(df):
     df = df.drop_duplicates()
 
     separator = "Used on a"
-    df['effect'] = df['effect'].fillna('').astype(str)
-    df['effect'] = df['effect'].str.split(separator, n=1).str[0]
-    df['effect'] = df['effect'].str.replace('\n', '', regex=False).str.strip()
+    df['item_description'] = df['item_description'].fillna('').astype(str)
+    df['item_description'] = df['item_description'].str.split(separator, n=1).str[0]
+    df['item_description'] = df['item_description'].str.replace('\n', '', regex=False).str.strip()
 
-    df['effect'] = df['effect'].str.replace(r'\s*:\s*', ': ', regex= True)
-    df['effect'] = df['effect'].str.replace(r'\s+', ' ', regex= True)
-    df['effect'] = df['effect'].str.replace('"', '')
+    df['item_description'] = df['item_description'].str.replace(r'\s*:\s*', ': ', regex= True)
+    df['item_description'] = df['item_description'].str.replace(r'\s+', ' ', regex= True)
+    df['item_description'] = df['item_description'].str.replace('"', '')
     
     return df

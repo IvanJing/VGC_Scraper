@@ -1,4 +1,4 @@
-from imports import processor, scraper
+from imports import processor, scraper, uploader
 
 
 def test_team_fetch():
@@ -23,8 +23,12 @@ def get_data():
     #processor.fetch_official_data()
     #processor.make_all_csv()
 
+def upload_game_data():
+    processor.fetch_game_data()
+    uploader.upload_game_data()
+
 def main():
-    processor.make_abilities_csv()
+    upload_game_data()
 
 main()
 
