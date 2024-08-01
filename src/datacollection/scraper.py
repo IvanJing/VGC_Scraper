@@ -303,6 +303,30 @@ def fetch_team_data(filepath):
 
     return team_data
 
+def fetch_icon_links():
+    """Gets item icons from Pokemondb's item list."""
+
+    def fetch_icon(url, item_data):
+        response = fetch_html(url)
+        soup = BeautifulSoup(response, "lxml")
+        items = soup.find_all("tr")
+        #check second td to see if it's a held item or a berry
+        for item in items[1:]:
+            columns = item.find_all("td")
+            if(columns[1].text != "Hold items" and columns[1].text != "Berries"):
+                continue
+            item_name = columns[0].find("a").text
+            icon_link = columns[0]("img")[0]["src"]
+            item_data.append([item_name, icon_link])
+        
+        return item_data
+
+    item_data = []
+
+    url = "https://pokemondb.net/item/all"
+    item_data= (fetch_icon(url, item_data))
+
+    return item_data
 
 def fetch_html(url):
     response = requests.get(url)

@@ -7,4 +7,5 @@ src/data/abilities.csv
 src/data/moves.csv
 src/data/items.csv
 src/data/tournaments.csv
+src/data/icons.csv
 .env

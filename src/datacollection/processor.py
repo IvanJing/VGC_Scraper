@@ -17,6 +17,7 @@ POKEMON_PATH = r"src\data\pokemon.csv"
 ABILITIES_PATH = r"src\data\abilities.csv"
 MOVES_PATH = r"src\data\moves.csv"
 ITEMS_PATH = r"src\data\items.csv"
+ICONS_PATH = r"src\data\icons.csv"
 
 def create_csv(df, filepath):
     """
@@ -33,7 +34,7 @@ def create_csv(df, filepath):
     
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     
-    df.to_csv(filepath, index=False, encoding='utf-8', header=False)
+    df.to_csv(filepath, index=False, encoding='utf-8', header=True)
 
 def append_to_csv(data, filepath, data_type):
     """
@@ -197,6 +198,18 @@ def make_held_items_csv():
     df = clean_items_data(df)
 
     create_csv(df, ITEMS_PATH)
+
+def make_icons_csv():
+    """Fetches item icon links and creates a csv file."""
+
+    data = scraper.fetch_icon_links()
+    headers = [
+        "item_name",
+        "icon_link",
+    ]
+
+    df = pd.DataFrame(data, columns=headers)
+    create_csv(df, ICONS_PATH)
 
 """
 

@@ -1,8 +1,17 @@
+"""This module contains functions to fetch data from the Pokeapi and other sources.
+
+The Pokeapi is a RESTful API that provides data on most Pokémon, abilities, moves, and held items, among other things. However, this data is not always accurate or complete. 
+Since the goal of this project is to be a tool for competitive players, we won't need ALL information, but we must ensure that data relevant to battles should be up-to-date and consistent.
+Functions in this module allow us to fetch data from the Pokeapi and fill missing data with information from other sources, such as Bulbapedia. There are some unique items, such as 
+Zacian and Zamazenta's 'rusted' items that will require manual entry. However, most data should be collected here.
+
+"""
+
 import requests
 from bs4 import BeautifulSoup
 
 def fetch_pokemon_api():
-    """Directly calls the Pokeapi to fetch all pokemon data."""
+    """Crafts API requests to fetch data on all Pokemon from the Pokeapi."""
 
     url = "https://pokeapi.co/api/v2/pokemon/"
 
@@ -58,12 +67,14 @@ def fetch_ability_api():
     """Directly calls the Pokeapi to fetch all ability data."""
 
     def get_english_effect(effects):
+        """Since Pokeapi doesn't have a consistent listing of languages, we need to search for the english effect specifically."""
         for effect in effects:
             if effect["language"]["name"] == "en":
                 return effect["effect"]
         return None
     
     def fetch_bulbapedia_effect(name):
+        """Sometimes Pokeapi is missing data for a given ability. In this case, we can fetch the data from Bulbapedia."""
         name = name.replace(" ", "_")
 
         url = f"https://bulbapedia.bulbagarden.net/wiki/{name}_(Ability)"
@@ -119,12 +130,14 @@ def fetch_move_api():
     """Directly calls the Pokeapi to fetch all move data."""
 
     def get_english_effect(effects):
+        """Since Pokeapi doesn't have a consistent listing of languages, we need to search for the english effect specifically."""
         for effect in effects:
             if effect["language"]["name"] == "en":
                 return [effect["effect"], effect["short_effect"]]
         return None
     
     def fetch_bulbapedia_effect(name):
+        """Sometimes Pokeapi is missing data for a given move. In this case, we can fetch the data from Bulbapedia."""
         name = name.replace(" ", "_")
         url = f"https://bulbapedia.bulbagarden.net/wiki/{name}_(move)"
         response = requests.get(url)
@@ -192,6 +205,7 @@ def fetch_held_item_api():
     """This function fetches all held item data from the Pokeapi."""
 
     def fetch_bulbapedia_effect(name):
+        """Sometimes Pokeapi is missing data for a given held item. In this case, we can fetch the data from Bulbapedia."""
         name = name.replace(" ", "_")
         url = f"https://bulbapedia.bulbagarden.net/wiki/{name}"
         response = requests.get(url)
@@ -202,6 +216,7 @@ def fetch_held_item_api():
         return effect
     
     def check_if_held_item(item):
+        """Pokeapi lists a multitude of held items under a variety of aliases. This function checks if the item is a held item using a subset of possible names."""
         valid_categories = ["holdable-active", "holdable", "species-specific","memories"]
 
         if item["category"]["name"] == "held-items":

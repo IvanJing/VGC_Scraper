@@ -24,11 +24,10 @@ def get_data():
     #processor.make_all_csv()
 
 def upload_game_data():
-    processor.fetch_game_data()
     uploader.upload_game_data()
 
 def main():
-    upload_game_data()
+    processor.make_icons_csv()
 
 main()
 

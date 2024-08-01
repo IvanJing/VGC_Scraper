@@ -1,4 +1,11 @@
-"""This module handles all database uploading."""
+"""Modules for uploading data to the PostgreSQL database.
+
+The functions in this file are used to upload data to the PostgreSQL database, either creating, updating, or straight up replacing tables in the database. 
+The functions here are rarely called on their lonesome, and instead are called by foreign functions or manually by the user in main.py.
+There's a chance for duplicate data to be scraped/retrieved by our data collection modules, and it isn't possible to check for duplicates here without pulling the data from the database first;
+Therefore, we'll need to rely on the database to do this cleaning for us, and we'll need to make sure that the data we're uploading is clean and ready to be uploaded as much as possible to lighten the load.
+
+"""
 
 import os
 import sqlalchemy as sqlachl
@@ -47,7 +54,7 @@ def upload_tournaments(filepath):
         )
 
     # Upload the data to the Tournaments table
-    df.to_sql("Tournaments", engine, if_exists="append", index=False)
+    df.to_sql("Tournaments", engine, if_exists="replace", index=False)
     connection.commit()
 
 
@@ -77,7 +84,7 @@ def upload_standings(filepath):
             )
         )
 
-    df.to_sql("Standings", engine, if_exists="append", index=False)
+    df.to_sql("Standings", engine, if_exists="replace", index=False)
     connection.commit()
 
 
@@ -111,7 +118,7 @@ def upload_teams(filepath):
             )
         )
 
-    df.to_sql("Team_members", engine, if_exists="append", index=False)
+    df.to_sql("Team_members", engine, if_exists="replace", index=False)
     connection.commit()
 
 
@@ -146,7 +153,7 @@ def upload_pokemon(filepath):
             )
         )
 
-    df.to_sql("Pokemon", engine, if_exists="append", index=False)
+    df.to_sql("Pokemon", engine, if_exists="replace", index=False)
     connection.commit()
 
 def upload_moves(filepath):
@@ -175,7 +182,7 @@ def upload_moves(filepath):
             )
         )
 
-    df.to_sql("Moves", engine, if_exists="append", index=False)
+    df.to_sql("Moves", engine, if_exists="replace", index=False)
     connection.commit()
 
 def upload_abilities(filepath):
@@ -199,7 +206,7 @@ def upload_abilities(filepath):
             )
         )
 
-    df.to_sql("Abilities", engine, if_exists="append", index=False)
+    df.to_sql("Abilities", engine, if_exists="replace", index=False)
     connection.commit()
 
 def upload_items(filepath):
@@ -223,7 +230,7 @@ def upload_items(filepath):
             )
         )
 
-    df.to_sql("Items", engine, if_exists="append", index=False)
+    df.to_sql("Items", engine, if_exists="replace", index=False)
     connection.commit()
 
 def update_tournament(filepath):
@@ -356,7 +363,7 @@ def upload_game_data():
         upload_abilities(ABILITIES_PATH)
         upload_items(ITEMS_PATH)
     except Exception as e:
-        print(f'EREREREREREREREAFDSKKJGJBHSDANVDSVSSDVBSOIDN{e}')
+        print(f'Error, failed to upload game data.{e}')
 
 def upload_official_data():
     """Uploads all official data to the PostgreSQL database."""
@@ -366,5 +373,5 @@ def upload_official_data():
         upload_standings(STANDINGS_PATH)
         upload_teams(TEAMS_PATH)
     except Exception as e:
-        print(e)
+        print(f'Error failed to upload official data{e}')
 
