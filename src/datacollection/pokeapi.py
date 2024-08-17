@@ -29,6 +29,7 @@ def fetch_pokemon_api():
         "ability1",
         "ability2",
         "ability3",
+        "sprite",
     ]
     pokemon_data = [headers]
 
@@ -55,6 +56,7 @@ def fetch_pokemon_api():
                     abilities[0] if abilities else None,
                     abilities[1] if len(abilities) > 1 else None,
                     abilities[2] if len(abilities) > 2 else None,
+                    pokemon["sprites"]["front_default"]
                 ]
             )
             print(f"Fetched data for Pokémon index {i}")

@@ -27,7 +27,7 @@ def upload_game_data():
     uploader.upload_game_data()
 
 def main():
-    processor.make_icons_csv()
+    uploader.upload_pokemon("src/data/pokemon.csv")
 
 main()
 
